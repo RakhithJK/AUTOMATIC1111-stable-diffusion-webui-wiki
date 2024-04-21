@@ -1,7 +1,7 @@
 ## Quick Settings
 <details><summary>The Quick Settings located at the top of the web page can be configured to your needs</summary>
 
-`Setting User` -> `interface` -> `Quick settings list`
+`Setting` -> `User interface` -> `Quick settings list`
 Any settings can be placed in the `Quick Settings`, changes to the settings hear will be immediately saved and applied and save to config.
 
 ![quick-settings-list-1](images/quick-settings-list-1.png)
@@ -24,7 +24,9 @@ How to get `Face Restore` or `Tiling` back
 
 We allows user to add additional settings to the image generation interface, the settings can be found under
 
-`Setting User` -> `interface` -> `Options in main UI - txt2img/img2img`
+`Setting` -> `Settings in UI` -> `Settings for txt2img/img2img`
+> In webui 1.6 the setting was `Setting` -> `interface` -> `Options in main UI - txt2img/img2img`
+
 most if not all settings can be added here if needed
 
 Previously `Face Restoration` and `Tiling` are built into the interface and cannot be modified, for users that finds them useful you can add them back manually
