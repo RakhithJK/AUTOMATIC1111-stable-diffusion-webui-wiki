@@ -26,6 +26,7 @@ We allows user to add additional settings to the image generation interface, the
 
 `Setting` -> `Settings in UI` -> `Settings for txt2img/img2img`
 > In webui 1.6 the setting was `Setting` -> `interface` -> `Options in main UI - txt2img/img2img`
+> > this functionality is added via the built-in extension `extra-options-section`, if you are not seeing the setting options, check if it's enable on the extensions tab.
 
 most if not all settings can be added here if needed
 
