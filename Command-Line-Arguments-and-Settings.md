@@ -66,8 +66,8 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --ckpt-dir 	| CKPT_DIR | None   				 | Path to directory with Stable Diffusion checkpoints. |
 --no-download-sd-model | None | False | Don't download SD1.5 model even if no model is found. |
 --do-not-download-clip | None | False | do not download CLIP model even if it's not included in the checkpoint |
---vae-dir | VAE_PATH | None  					| Path to Variational Autoencoders model | disables all settings related to VAE.
---vae-path | VAE_PATH | None | Checkpoint to use as VAE; setting this argument
+--vae-dir | VAE_PATH | None  					| Path to Variational Autoencoders model | disables all settings related to VAE. |
+--vae-path | VAE_PATH | None | Checkpoint to use as VAE; setting this argument |
 --gfpgan-dir| GFPGAN_DIR | GFPGAN/			 | GFPGAN directory. |
 --gfpgan-model| GFPGAN_MODEL			 | GFPGAN model file name. |
 --codeformer-models-path | CODEFORMER_MODELS_PATH | models/Codeformer/ | Path to directory with codeformer model file(s). |
@@ -78,13 +78,14 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --scunet-models-path | SCUNET_MODELS_PATH | models/ScuNET | Path to directory with ScuNET model file(s). |
 --swinir-models-path | SWINIR_MODELS_PATH | models/SwinIR | Path to directory with SwinIR and SwinIR v2 model file(s). |
 --ldsr-models-path | LDSR_MODELS_PATH | models/LDSR	| Path to directory with LDSR model file(s). |
---lora-dir | LORA_DIR | models/Lora | Path to directory with Lora networks.
+--dat-models-path | DAT__MODELS_PATH | models/DAT | Path to directory with DAT model file(s). |
+--lora-dir | LORA_DIR | models/Lora | Path to directory with Lora networks. |
 --clip-models-path | CLIP_MODELS_PATH | None | Path to directory with CLIP model file(s). |
 --embeddings-dir | EMBEDDINGS_DIR | embeddings/		 | Embeddings directory for textual inversion (default: embeddings). |
---textual-inversion-templates-dir | TEXTUAL_INVERSION_TEMPLATES_DIR | textual_inversion_templates | Directory with textual inversion templates.
+--textual-inversion-templates-dir | TEXTUAL_INVERSION_TEMPLATES_DIR | textual_inversion_templates | Directory with textual inversion templates. |
 --hypernetwork-dir | HYPERNETWORK_DIR | models/hypernetworks/	 | hypernetwork directory. |
 --localizations-dir | LOCALIZATIONS_DIR | localizations/ | Localizations directory.
---styles-file | STYLES_FILE | styles.csv 				| Filename to use for styles. |
+--styles-file | STYLES_FILE | styles.csv 				| Path or wildcard path of styles files, allow multiple entries. |
 --ui-config-file | UI_CONFIG_FILE | 	ui-config.json	| Filename to use for UI configuration. |
 --no-progressbar-hiding | None | False 			 | Do not hide progress bar in gradio UI (we hide it because it slows down ML if you have hardware acceleration in browser). |
 --max-batch-count| MAX_BATCH_COUNT | 16	 | Maximum batch count value for the UI. |
@@ -94,7 +95,9 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --listen  | None | False            					| Launch gradio with 0.0.0.0 as server name, allowing to respond to network requests. |
 --port | PORT | 7860           					| Launch gradio with given server port, you need root/admin rights for ports < 1024; defaults to 7860 if available. |
 --hide-ui-dir-config | None | False  					| Hide directory configuration from web UI. |
---freeze-settings | None | False | disable editing settings |
+--freeze-settings | None | False | disable editing of all settings globally | 
+--freeze-settings-in-sections | None | False | disable editing settings in specific sections of the settings page by specifying a comma-delimited list such like "saving-images,upscaling". The list of setting names can be found in the modules/shared_options.py file |
+--freeze-specific-settings | None | False | disable editing of individual settings by specifying a comma-delimited list like "samples_save,samples_format". The list of setting names can be found in the config.json file |
 --enable-insecure-extension-access | None | False | Enable extensions tab regardless of other options. |
 --gradio-debug | None | False        					| Launch gradio with `--debug` option. |
 --gradio-auth | GRADIO_AUTH | None 				| Set gradio authentication like `username:password`; or comma-delimit multiple like `u1:p1,u2:p2,u3:p3`. |
@@ -112,62 +115,67 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --cors-allow-origins-regex | CORS_ALLOW_ORIGINS_REGEX | None | Allowed CORS origin(s) in the form of a single regular expression. |
 --tls-keyfile | TLS_KEYFILE | None | Partially enables TLS, requires `--tls-certfile` to fully function. |
 --tls-certfile | TLS_CERTFILE | None | Partially enables TLS, requires `--tls-keyfile` to fully function. |
---disable-tls-verify | None | False | When passed, enables the use of self-signed certificates.
+--disable-tls-verify | None | False | When passed, enables the use of self-signed certificates. |
 --server-name | SERVER_NAME | None | Sets hostname of server. |
---no-gradio-queue | None| False | Disables gradio queue; causes the webpage to use http requests instead of websockets; was the default in earlier versions.
---gradio-allowed-path | None | None | Add path to Gradio's `allowed_paths`; make it possible to serve files from it.
+--no-gradio-queue | None| False | Disables gradio queue; causes the webpage to use http requests instead of websockets; was the default in earlier versions. |
+--gradio-allowed-path | None | None | Add path to Gradio's `allowed_paths`; make it possible to serve files from it. |
 --no-hashing | None | False | Disable SHA-256 hashing of checkpoints to help loading performance. |
 --skip-version-check | None | False | Do not check versions of torch and xformers. |
 --skip-python-version-check | None | False | Do not check versions of Python. |
 --skip-torch-cuda-test | None | False | Do not check if CUDA is able to work properly. |
 --skip-install | None | False | Skip installation of packages. |
---loglevel | None | None | log level; one of: CRITICAL, ERROR, WARNING, INFO, DEBUG
+--loglevel | None | None | log level; one of: CRITICAL, ERROR, WARNING, INFO, DEBUG |
 --log-startup | None | False | launch.py argument: print a detailed log of what's happening at startup |
 --api-server-stop | None | False | enable server stop/restart/kill via api |
 --timeout-keep-alive | int | 30 | set timeout_keep_alive for uvicorn |
 | **PERFORMANCE** |
 --xformers | None | False           					| Enable xformers for cross attention layers. |
 --force-enable-xformers	| None | False				| Enable xformers for cross attention layers regardless of whether the checking code thinks you can run it; ***do not make bug reports if this fails to work***. |
---xformers-flash-attention | None | False | Enable xformers with Flash Attention to improve reproducibility (supported for SD2.x or variant only).
---opt-sdp-attention | None | False | Enable scaled dot product cross-attention layer optimization; requires PyTorch 2.*
+--xformers-flash-attention | None | False | Enable xformers with Flash Attention to improve reproducibility (supported for SD2.x or variant only). |
+--opt-sdp-attention | None | False | Enable scaled dot product cross-attention layer optimization; requires PyTorch 2.* |
 --opt-sdp-no-mem-attention | False | None | Enable scaled dot product cross-attention layer optimization without memory efficient attention, makes image generation deterministic; requires PyTorch 2.*
 --opt-split-attention | None | False 		| Force-enables Doggettx's cross-attention layer optimization. By default, it's on for CUDA-enabled systems. |
 --opt-split-attention-invokeai | None | False			| Force-enables InvokeAI's cross-attention layer optimization. By default, it's on when CUDA is unavailable. |
 --opt-split-attention-v1 | None | False 				| Enable older version of split attention optimization that does not consume all VRAM available. |
---opt-sub-quad-attention | None | False | Enable memory efficient sub-quadratic cross-attention layer optimization.
---sub-quad-q-chunk-size | SUB_QUAD_Q_CHUNK_SIZE | 1024 | Query chunk size for the sub-quadratic cross-attention layer optimization to use.
---sub-quad-kv-chunk-size | SUB_QUAD_KV_CHUNK_SIZE | None | KV chunk size for the sub-quadratic cross-attention layer optimization to use.
+--opt-sub-quad-attention | None | False | Enable memory efficient sub-quadratic cross-attention layer optimization. |
+--sub-quad-q-chunk-size | SUB_QUAD_Q_CHUNK_SIZE | 1024 | Query chunk size for the sub-quadratic cross-attention layer optimization to use. |
+--sub-quad-kv-chunk-size | SUB_QUAD_KV_CHUNK_SIZE | None | KV chunk size for the sub-quadratic cross-attention layer optimization to use. |
 --sub-quad-chunk-threshold | SUB_QUAD_CHUNK_THRESHOLD | None | The percentage of VRAM threshold for the sub-quadratic cross-attention layer optimization to use chunking.
 --opt-channelslast | None | False    					| Enable alternative layout for 4d tensors, may result in faster inference **only** on Nvidia cards with Tensor cores (16xx and higher). |
 --disable-opt-split-attention | None | False 			| Force-disables cross-attention layer optimization. |
---disable-nan-check | None | False | Do not check if produced images/latent spaces have nans; useful for running without a checkpoint in CI.
+--disable-nan-check | None | False | Do not check if produced images/latent spaces have nans; useful for running without a checkpoint in CI. |
 --use-cpu | {all, sd, interrogate, gfpgan, bsrgan, esrgan, scunet, codeformer} | None | Use CPU as torch device for specified modules. |
+--use-ipex | None | False | Use Intel XPU as torch device |
 --no-half     | None | False         				 | Do not switch the model to 16-bit floats. |
 --precision | {full,autocast} | autocast			 | Evaluate at this precision. |
 --no-half-vae | None | False         				 | Do not switch the VAE model to 16-bit floats. |
---upcast-sampling | None | False | Upcast sampling. No effect with `--no-half`. Usually produces similar results to `--no-half` with better performance while using less memory.
+--upcast-sampling | None | False | Upcast sampling. No effect with `--no-half`. Usually produces similar results to `--no-half` with better performance while using less memory. |
 --medvram    | None | False          				 | Enable Stable Diffusion model optimizations for sacrificing a some performance for low VRAM usage. |
---medvram-sdxl | None | False                         | enable `--medvram` optimization just for SDXL models
+--medvram-sdxl | None | False                         | enable `--medvram` optimization just for SDXL models |
 --lowvram    | None | False          				 | Enable Stable Diffusion model optimizations for sacrificing a lot of speed for very low VRAM usage. |
---lowram     | None | False         				 | Load Stable Diffusion checkpoint weights to VRAM instead of RAM.
+--lowram     | None | False         				 | Load Stable Diffusion checkpoint weights to VRAM instead of RAM. |
 --disable-model-loading-ram-optimization | None | False | disable an optimization that reduces RAM use when loading a model |
 | **FEATURES** |
 --autolaunch | None | False         					| Open the web UI URL in the system's default browser upon launch. |
 --theme | None | Unset         					| Open the web UI with the specified theme (`light` or `dark`). If not specified, uses the default browser theme. |
 --use-textbox-seed | None | False   					| Use textbox for seeds in UI (no up/down, but possible to input long seeds). |
 --disable-safe-unpickle | None | False				| Disable checking PyTorch models for malicious code. |
---ngrok | NGROK | None         				 | ngrok authtoken, alternative to gradio `--share`.
---ngrok-region | NGROK_REGION | us			 | The region in which ngrok should start.
---ngrok-options | NGROK_OPTIONS | None | The options to pass to ngrok in JSON format, e.g.: `{"authtoken_from_env":true, "basic_auth":"user:password", "oauth_provider":"google", "oauth_allow_emails":"user@asdf.com"}`
---update-check | None | None | On startup, notifies whether or not your web UI version (commit) is up-to-date with the current master branch.
---update-all-extensions | None | None | On startup, it pulls the latest updates for all extensions you have installed.
+--ngrok | NGROK | None         				 | ngrok authtoken, alternative to gradio `--share`. |
+--ngrok-region | NGROK_REGION | us			 | The region in which ngrok should start. |
+--ngrok-options | NGROK_OPTIONS | None | The options to pass to ngrok in JSON format, e.g.: `{"authtoken_from_env":true, "basic_auth":"user:password", "oauth_provider":"google", "oauth_allow_emails":"user@asdf.com"}` |
+--update-check | None | None | On startup, notifies whether or not your web UI version (commit) is up-to-date with the current master branch. |
+--update-all-extensions | None | None | On startup, it pulls the latest updates for all extensions you have installed. |
 --reinstall-xformers | None | False | Force-reinstall xformers. Useful for upgrading - but remove it after upgrading or you'll reinstall xformers perpetually. |
 --reinstall-torch | None | False | Force-reinstall torch. Useful for upgrading - but remove it after upgrading or you'll reinstall torch perpetually. |
---tests | TESTS | False | Run test to validate web UI functionality, see wiki topic for more details.
---no-tests | None | False | Do not run tests even if `--tests` option is specified.
---dump-sysinfo | None | False | launch.py argument: dump limited sysinfo file (without information about extensions, options) to disk and quit
---disable-all-extensions | None | False | disable all non-built-in extensions from running
---disable-extra-extensions | None | False | disable all extensions from running 
+--tests | TESTS | False | Run test to validate web UI functionality, see wiki topic for more details. |
+--no-tests | None | False | Do not run tests even if `--tests` option is specified. |
+--dump-sysinfo | None | False | launch.py argument: dump limited sysinfo file (without information about extensions, options) to disk and quit |
+--disable-all-extensions | None | False | disable all non-built-in extensions from running |
+--disable-extra-extensions | None | False | disable all extensions from running |
+--skip-load-model-at-start | None | False | if load a model at web start, only take effect when --nowebui |
+--unix-filenames-sanitization | None | False | allow any symbols except '/' in filenames. May conflict with your browser and file system |
+--filenames-max-length | int | 128 | maximal length of filenames of saved images. If you override it, it can conflict with your file system |
+--no-prompt-history | None | False | disable read prompt from last generation feature; disables `--data-path/params.txt` |
 | **DEFUNCT OPTIONS** |
 --show-negative-prompt | None | False 					| No longer has an effect. |
 --deepdanbooru | None | False 					| No longer has an effect. |
