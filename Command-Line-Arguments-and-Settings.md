@@ -174,7 +174,7 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --disable-extra-extensions | None | False | disable all extensions from running |
 --skip-load-model-at-start | None | False | if load a model at web start, only take effect when --nowebui |
 --unix-filenames-sanitization | None | False | allow any symbols except '/' in filenames. May conflict with your browser and file system |
---filenames-max-length | int | 128 | maximal length of filenames of saved images. If you override it, it can conflict with your file system |
+--filenames-max-length | int | 128 | maximal length of filenames of saved images, longer filenames will be truncated. if overridden it can potentially cause issues with the file system |
 --no-prompt-history | None | False | disable read prompt from last generation feature; disables `--data-path/params.txt` |
 | **DEFUNCT OPTIONS** |
 --show-negative-prompt | None | False 					| No longer has an effect. |
