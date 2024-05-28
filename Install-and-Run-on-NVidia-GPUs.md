@@ -208,47 +208,74 @@ See [Troubleshooting](Troubleshooting) section for what to do if things go wrong
 
 ## Linux 
 
-(Debian-based)
+The listed commands will install webui to your current directory. 
 
-1. Enter these commands, which will install webui to your current directory:
+>If you want to use a different python installed in your system, uncomment line 16 in `webui-user.sh` and add the existing python version: \
+ `python_cmd="python3.10"` \
+or path: \
+`python_cmd="/home/$USER/.pyenv/versions/3.10.6/bin/python3.10"`
+
+**Ubuntu 24.04**
 
 ```
-sudo apt install git python3.10-venv -y
+sudo apt install git software-properties-common -y
+sudo add-apt-repository ppa:deadsnakes/ppa -y
+sudo apt install python3.10-venv -y
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui
 python3.10 -m venv venv
+./webui.sh
 ```
 
-2. Install and run with:
-
-    ./webui.sh {your_arguments}
-
-<details><summary>Other Distributions:</summary>
-
-(Arch-based)
-
-    sudo pacman -S git python3 -y && git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui && ./webui.sh
-
-(Red Hat-based)
-
-    sudo dnf install git python3 -y && git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui && ./webui.sh
-
-</details>
-
-<details><summary>For Installing Python 3.10</summary>
-
-Some distribution have older/newer system python versions than python 3.10. 
+**Fedora 40**
 
 ```
-cd stable-diffusion-webui
+sudo dnf install git python310 -y
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui 
+python3.10 -m venv venv
+./webui.sh
+```
 
-sudo pacman -S pyenv
+**Arch Linux**
+
+```
+sudo pacman -S git -y
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui
+```
+1. A good way of installing the recommended python3.10 version is through **AUR** packages:
+
+```
+yay -S python310
+python3.10 -m venv venv
+./webui.sh
+```
+
+---
+
+2. An alternative to this would be to use `pyenv`. On arch Linux, most dependencies for `pyenv` should be met, but you may still need to run:
+
+```
+sudo pacman -S gcc make -y
+```
+
+Then install `pyenv` and your chosen python version like so:
+
+```
+sudo pacman -S pyenv -y
 pyenv install 3.10.6
-pyenv local 3.10.6
-
-python -m venv venv
 ```
 
-</details>
+Now, you only need to create a venv with your specific python version, by running this command:
+
+```
+~/.pyenv/versions/3.10.6/bin/python3.10 -m venv venv
+```
+
+Then start the installation process.
+
+```
+./webui.sh
+```
+
 
 ## Third party installation guides/scripts:
 - NixOS: https://github.com/virchau13/automatic1111-webui-nix
