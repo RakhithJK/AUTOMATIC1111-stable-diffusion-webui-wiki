@@ -4,3 +4,4 @@
 - [Optimum SDXL Usage](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Optimum-SDXL-Usage)
 - [Can't reproduce results? Try this first](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/13093)
 - [(rocm) fix for random restarts due to lack of miopen cache](https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/13275)
+- [Installation and troubleshooting on Fedora-based distributions](https://github.com/OttCS/automatic1111-webui-fedora)
