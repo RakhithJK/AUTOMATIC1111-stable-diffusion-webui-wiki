@@ -210,10 +210,12 @@ See [Troubleshooting](Troubleshooting) section for what to do if things go wrong
 
 The listed commands will install webui to your current directory. 
 
->If you want to use a different python installed in your system, uncomment line 16 in `webui-user.sh` and add the existing python version: \
- `python_cmd="python3.10"` \
-or path: \
-`python_cmd="/home/$USER/.pyenv/versions/3.10.6/bin/python3.10"`
+>ℹ️ Note: If you want to use a different python version installed in your system, please uncomment line 16 in `webui-user.sh` and add the existing python version: 
+``` 
+python_cmd="python3.10"
+# Or path:
+python_cmd="/home/$USER/.pyenv/versions/3.10.6/bin/python3.10"
+```
 
 **Ubuntu 24.04**
 
@@ -241,17 +243,17 @@ python3.10 -m venv venv
 sudo pacman -S git -y
 git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui && cd stable-diffusion-webui
 ```
-1. A good way of installing the recommended python3.10 version is through **AUR** packages:
+Installation of python3.10 through **AUR** packages:
 
 ```
 yay -S python310
 python3.10 -m venv venv
 ./webui.sh
-```
+``` 
 
----
+<details><summary>Alternatively, through pyenv. (Click to expand:)</summary>
 
-2. An alternative to this would be to use `pyenv`. On arch Linux, most dependencies for `pyenv` should be met, but you may still need to run:
+On arch Linux, most dependencies for `pyenv` should be met, but you may still need to run:
 
 ```
 sudo pacman -S gcc make -y
@@ -276,9 +278,11 @@ Then start the installation process.
 ./webui.sh
 ```
 
+</details>
 
 ## Third party installation guides/scripts:
 - NixOS: https://github.com/virchau13/automatic1111-webui-nix
+- Fedora: https://github.com/OttCS/automatic1111-webui-fedora
 
 ## Install and run without virtual environment
 
