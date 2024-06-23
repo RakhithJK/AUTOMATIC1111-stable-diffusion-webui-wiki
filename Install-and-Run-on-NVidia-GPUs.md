@@ -35,7 +35,7 @@ The default configuration of web UI should run on most modern GPU, but in some c
 If you already have stable diffusion models downloaded, you can move the models into `sd.webui\webui\models\Stable-diffusion\` before running `run.bat` in step 3, this will skip auto downloading the vanilla [stable-diffusion-v1-5 model](https://huggingface.co/runwayml/stable-diffusion-v1-5) model.
 
 ## Windows (method 2)
-1. Install [Python 3.10.6](https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe) (ticking **Add to PATH**), and [git](https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/Git-2.39.2-64-bit.exe)
+1. Install [Python 3.10.6](https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe) (64-bit) (ticking **Add to PATH**), and [git](https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/Git-2.39.2-64-bit.exe)
 2. Open Command Prompt from search bar, and type `git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui`
 3. Double click `webui-user.bat`
 
