@@ -88,7 +88,6 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --styles-file | STYLES_FILE | styles.csv 				| Path or wildcard path of styles files, allow multiple entries. |
 --ui-config-file | UI_CONFIG_FILE | 	ui-config.json	| Filename to use for UI configuration. |
 --no-progressbar-hiding | None | False 			 | Do not hide progress bar in gradio UI (we hide it because it slows down ML if you have hardware acceleration in browser). |
---max-batch-count| MAX_BATCH_COUNT | 16	 | Maximum batch count value for the UI. |
 --ui-settings-file | UI_SETTINGS_FILE | config.json 	| Filename to use for UI settings. |
 --allow-code | None | False          				 | Allow custom script execution from web UI. |
 --share | None | False               				 | Use `share=True` for gradio and make the UI accessible through their site.
@@ -185,3 +184,4 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --gradio-queue | None | False | No longer has an effect. |
 --add-stop-route | None | False | No longer has an effect. |
 --always-batch-cond-uncond | None | False			 | No longer has an effect, move into UI under `Setting > Optimizations` |
+--max-batch-count| MAX_BATCH_COUNT | 16	 | No longer has an effect. moved to `ui-config.json` `txt2img/Batch count/maximum` `img2img/Batch count/maximum` [User-Interface-Customizations](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/User-Interface-Customizations#ui-element-dafault-value-and-range-limit-step-size)  |
