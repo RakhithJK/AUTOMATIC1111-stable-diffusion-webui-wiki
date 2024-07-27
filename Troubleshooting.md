@@ -123,3 +123,48 @@ According to the above image to locate, and modify the last Content Type and Per
 Finally, reboot the machine, delete the browser cache, and force refresh the web page (shift+f5).
 Thanks to https://www.bilibili.com/read/cv19519519
 </details>
+
+# fatal: not a git repository
+
+When running a git command some users may encounter this issue
+```
+fatal: not a git repository (or any of the parent directories): .git
+```
+
+This happes to some user when ther download webui by using `Downloading ZIP` button on GitHub's webpage, this button download the code without the `.git` dir which contains the metadata of a git repo, 
+as it is not a git repository git operations doesn't work.
+
+## Fix: convert a non-git dir to a git repo
+
+This can be fixed by convert a non-git dir to a git repo by running the following command in the `webui root directory`
+
+### Warnings
+> If you do not have a basic understanding of running commands into a terminal
+
+> You MUST make sure your running the command in the webui's root directory<br>
+
+> If you're applying this guide for some other project that is NOT [AUTOMATIC1111/stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui) You MUST NOT use the command as is<br>
+> You MUST MODIFY the command appropriately, especially the `root directory` `remote URL` and `branch name`<br>
+
+> **failingly above may result in unintended data loss**
+
+
+```
+cd "<path-=of-webui-root>"
+git init
+git remote add origin https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+git fetch origin
+git switch master --force
+```
+
+meaning of each line of command
+
+0. change directory to the webui's root directory
+0.1 this change the directory where the commands will be applied to
+1. initialize the `current directory` as a `git repo`, (adding the .git dir and it's contents)
+2. set the remote of the git repo as `https://github.com/AUTOMATIC1111/stable-diffusion-webui.git`
+2.1 if you're following this guide for some other project you must modify the remote URL appropriately
+3. fecth git metadata from the remote origin
+4. switch the repo onto the `master` branch
+4.1 `--force` is used so that it will automatically override any conflicting files
+4.2 use different bench name other then `master` if you wish to switch to other branch, for example `dev` branch
