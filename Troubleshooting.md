@@ -160,11 +160,11 @@ git switch master --force
 meaning of each line of command
 
 0. change directory to the webui's root directory
-0.1 this change the directory where the commands will be applied to
+   - this change the directory where the commands will be applied to
 1. initialize the `current directory` as a `git repo`, (adding the .git dir and it's contents)
 2. set the remote of the git repo as `https://github.com/AUTOMATIC1111/stable-diffusion-webui.git`
-2.1 if you're following this guide for some other project you must modify the remote URL appropriately
+   - if you're following this guide for some other project you must modify the remote URL appropriately
 3. fecth git metadata from the remote origin
 4. switch the repo onto the `master` branch
-4.1 `--force` is used so that it will automatically override any conflicting files
-4.2 use different bench name other then `master` if you wish to switch to other branch, for example `dev` branch
+   - `--force` is used so that it will automatically override any conflicting files
+   - use different bench name other then `master` if you wish to switch to other branch, for example `dev` branch
