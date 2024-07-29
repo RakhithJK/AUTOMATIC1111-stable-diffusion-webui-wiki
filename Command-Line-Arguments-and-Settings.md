@@ -23,7 +23,7 @@ The recommended way to specify environment variables is by editing `webui-user.b
 
 For example, in Windows:
 ```
-set COMMANDLINE_ARGS=--allow-code --xformers --skip-torch-cuda-test --no-half-vae --api --ckpt-dir A:\\stable-diffusion-checkpoints 
+set COMMANDLINE_ARGS=--xformers --skip-torch-cuda-test --no-half-vae --api --ckpt-dir A:\\stable-diffusion-checkpoints 
 ```
 
 ### Running online
