@@ -115,6 +115,7 @@ https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/10516
 --tls-keyfile | TLS_KEYFILE | None | Partially enables TLS, requires `--tls-certfile` to fully function. |
 --tls-certfile | TLS_CERTFILE | None | Partially enables TLS, requires `--tls-keyfile` to fully function. |
 --disable-tls-verify | None | False | When passed, enables the use of self-signed certificates. |
+--subpath | SERVER_SUB_PATH | customize the subpath for gradio, use with reverse proxy |
 --server-name | SERVER_NAME | None | Sets hostname of server. |
 --no-gradio-queue | None| False | Disables gradio queue; causes the webpage to use http requests instead of websockets; was the default in earlier versions. |
 --gradio-allowed-path | None | None | Add path to Gradio's `allowed_paths`; make it possible to serve files from it. |
