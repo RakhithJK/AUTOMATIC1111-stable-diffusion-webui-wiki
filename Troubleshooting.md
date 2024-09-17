@@ -49,8 +49,16 @@ Various optimizations may be enabled through command line arguments, sacrificing
 - If you have 4GB VRAM and get an out of memory error when loading a full weight model, use `--disable-model-loading-ram-optimization` (added in v1.6.0)
 
 # Torch is not able to use GPU
+```
+Torch is not able to use GPU; add --skip-torch-cuda-test to COMMANDLINE_ARGS variable to disable this check
+```
 This is one of the most frequently mentioned problems, but it's usually not a WebUI fault, there are many reasons for it.
-- WebUI uses GPU by default, so if you don't have suitable hardware, you need to [run on CPU](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings#running-on-cpu).
+
+- WebUI uses GPU by default, and to make sure that GPU is working is working correctly we perform a test to see if CUDA is available, CUDA is only available on NVIDIA GPUs, so if you don't have a NVIDIA GPU or if the card is too old you might see this message.
+- If you encountered this message with a Navidad graphics card, then something is wrong, then something has gone wrong and is preventing whether you are from using your GPU properly.
+- However if you're using different Hardware such as an AMD GPU or a Mac then this message is expected, you should add `--skip-torch-cuda-test` to COMMANDLINE_ARGS as to bypass this CUDA test and follow the installation guide for you are specific hardware.
+ your specific hardware, and 
+if you don't have any hardware acceleration then the only option for you is to run on to [run on CPU](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Command-Line-Arguments-and-Settings#running-on-cpu).
 - Make sure you configure the WebUI correctly, refer to the corresponding installation tutorial in the [wiki](https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki).
 - If you encounter this issue after some component updates, try undoing the most recent actions.
 
